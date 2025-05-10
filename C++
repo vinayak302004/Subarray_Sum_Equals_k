@@ -1,0 +1,21 @@
+# C++
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int n = nums.size();
+        int consum = 0, result = 0;
+        unordered_map<int, int> map;
+        map[0] = 1;
+
+        for (int i = 0; i < n; ++i) {
+            consum += nums[i];
+            if (map.find(consum - k) != map.end()) {
+                result += map[consum - k];
+            }
+            map[consum]++;
+        }
+
+        return result;
+    }
+};
